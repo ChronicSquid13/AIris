@@ -98,19 +98,20 @@ PREFIX = "!"
 # Load application_id as an integer
 application_id = int(config['application_id'])
 bot = commands.AutoShardedBot(command_prefix=PREFIX, intents=intents, application_id=application_id, help_command=None)
+bot.config = config
 
 # Set up the database connection
 db_config = config['database']
-db_connection = mysql.connector.connect(
-    host=db_config['host'],
-    user=db_config['user'],
-    password=db_config['password'],
-    database=db_config['database'],
-    autocommit=True,  # Enable autocommit to avoid stale connections
-    connection_timeout=6000  # Set higher connection timeout
-)
+# db_connection = mysql.connector.connect(
+#     host=db_config['host'],
+#     user=db_config['user'],
+#     password=db_config['password'],
+#     database=db_config['database'],
+#     autocommit=True,  # Enable autocommit to avoid stale connections
+#     connection_timeout=6000  # Set higher connection timeout
+# )
 # Store the connection in the bot instance
-bot.db_connection = db_connection
+# bot.db_connection = db_connection
 
 # Start memory tracking
 tracemalloc.start()
